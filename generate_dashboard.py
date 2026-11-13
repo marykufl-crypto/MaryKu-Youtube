@@ -418,7 +418,7 @@ const getKey = () => ANON;  // anon key is baked in — safe, can only change st
 const I = n => '<svg class="ic"><use href="#i-' + n + '"/></svg>';
 const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const byRec = {}; DATA.forEach(d => byRec[d.id] = d);
-const chUrl = c => /^UC[\w-]{22}$/.test(c)
+const chUrl = c => /^UC[A-Za-z0-9_-]{22}$/.test(c)
   ? 'https://www.youtube.com/channel/' + c
   : 'https://www.youtube.com/@' + encodeURIComponent(c);
 const TRENDS = __TRENDS__;
@@ -961,7 +961,7 @@ const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(
 const getKey = () => ANON;  // anon key is baked in — safe, can only change status
 const firstLine = c => ((c || '').split('\\n').map(l => l.trim()).filter(Boolean)[0] || '(无文案)');
 const byRec = {}; DATA.forEach(d => byRec[d.id] = d);
-const chUrl = c => /^UC[\w-]{22}$/.test(c)
+const chUrl = c => /^UC[A-Za-z0-9_-]{22}$/.test(c)
   ? 'https://www.youtube.com/channel/' + c
   : 'https://www.youtube.com/@' + encodeURIComponent(c);
 
