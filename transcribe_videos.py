@@ -33,9 +33,17 @@ SUPABASE_URL = (os.environ.get("SUPABASE_URL") or "").rstrip("/")
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 GEMINI_FALLBACKS = ("gemini-2.5-flash", "gemini-3.5-flash-lite", "gemini-3.8-flash")
 _gemini_models = [GEMINI_MODEL] + [m for m in GEMINI_FALLBACKS if m != GEMINI_MODEL]
-MAX_AGE_DAYS = int(os.environ.get("MAX_AGE_DAYS", "30"))
-VIDEO_LIMIT = int(os.environ.get("VIDEO_LIMIT", "25"))
-MAX_MINUTES = int(os.environ.get("MAX_MINUTES", "25"))
+def _envi(name, default):
+    # GitHub passes unset variables as empty strings, so fall back on "" too
+    try:
+        return int(float(os.environ.get(name) or default))
+    except ValueError:
+        return int(default)
+
+
+MAX_AGE_DAYS = _envi("MAX_AGE_DAYS", 30)
+VIDEO_LIMIT = _envi("VIDEO_LIMIT", 25)
+MAX_MINUTES = _envi("MAX_MINUTES", 25)
 NO_SPEECH = "(无口播内容)"
 UNAVAILABLE = "(视频不可用)"
 MAX_CHARS = 5000
