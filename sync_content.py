@@ -285,7 +285,8 @@ def select_keepers(key, recs):
 
 
 def cleanup():
-    rows = sb("posts?select=post_id,status,last_synced&order=last_synced.asc.nullsfirst")
+    rows = sb(f"posts?select=post_id,status,last_synced&tracker=eq.{TRACKER}"
+              "&order=last_synced.asc.nullsfirst")
     if len(rows) <= MAX_ROWS:
         print(f"[Cleanup] {len(rows)} rows <= {MAX_ROWS}, nothing removed")
         return

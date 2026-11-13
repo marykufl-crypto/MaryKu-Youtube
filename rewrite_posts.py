@@ -109,7 +109,7 @@ def sb(path, method="GET", data=None, prefer=None):
 
 
 def fetch_pending():
-    flt = "" if REWRITE_ALL else "&my_script=is.null"
+    flt = "&tracker=eq.YT" + ("" if REWRITE_ALL else "&my_script=is.null")
     rows = sb(
         "posts?select=post_id,competitor,caption,transcript,post_type,"
         "likes,comments,views,followers"

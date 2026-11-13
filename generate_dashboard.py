@@ -49,7 +49,7 @@ def fetch_posts(key):
     """Fetch all rows from the Supabase posts table (paginated)."""
     rows, offset, page = [], 0, 1000
     while True:
-        url = f"{SUPABASE_URL}/rest/v1/posts?select=*&order=viral_score.desc.nullslast"
+        url = f"{SUPABASE_URL}/rest/v1/posts?select=*&tracker=eq.YT&order=viral_score.desc.nullslast"
         req = urllib.request.Request(url, headers={
             "apikey": key,
             "Range-Unit": "items", "Range": f"{offset}-{offset+page-1}",
@@ -88,7 +88,7 @@ def fetch_active_handles(key):
     skips filtering, so a key problem or an older schema still builds the full
     dashboard instead of an empty one.
     """
-    url = f"{SUPABASE_URL}/rest/v1/competitors?select=username,active"
+    url = f"{SUPABASE_URL}/rest/v1/competitors?select=username,active&tracker=eq.YT"
     req = urllib.request.Request(url, headers={"apikey": key})
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:

@@ -82,7 +82,7 @@ def fetch_pending():
     cutoff = (date.today() - timedelta(days=MAX_AGE_DAYS)).isoformat()
     rows = sb(
         "posts?select=post_id,competitor,post_url,duration_sec"
-        "&transcript=is.null"
+        "&tracker=eq.YT&transcript=is.null"
         f"&last_synced=gte.{cutoff}"
         "&order=viral_score.desc.nullslast"
     )

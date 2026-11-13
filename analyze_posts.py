@@ -69,7 +69,7 @@ def fetch_pending():
     rows = sb(
         "posts?select=post_id,competitor,caption,transcript,post_type,"
         "likes,comments,views,followers"
-        "&ai_breakdown=is.null"
+        "&tracker=eq.YT&ai_breakdown=is.null"
         "&order=viral_score.desc.nullslast"
     )
     # enough material to analyse: a real transcript or a decent caption
